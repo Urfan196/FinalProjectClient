@@ -1,26 +1,83 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { connect } from 'react-redux'
+import Welcome from './containers/Welcome'
+import SignUpUser from './containers/SignUpUser'
+import AddAddress from './containers/AddAddress'
+import ItemContainer from './containers/ItemContainer'
+import ShareItem from './containers/ShareItem'
+import ItemInfo from './components/ItemInfo'
+import EditItem from './containers/EditItem'
+import MessageContainer from './containers/MessageContainer'
+import Profile from './components/Profile'
+import EditProfile from './containers/EditProfile'
+import fetchAllItems from './actions/fetchAllItems'
+import fetchAllUsers from './actions/fetchAllUsers'
+import reAuth from './actions/reAuth'
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+class App extends React.Component {
+
+  componentDidMount () {
+      this.props.reAuth()
+      this.props.fetchAllItems()
+      this.props.fetchAllUsers()
+  }
+
+
+  render(){
+    return (
+      <div className="App">
+        <Router>
+          <Switch>
+            <Route exact path='/' component ={Welcome}/>
+            
+            <Route exact path='/signup' component={SignUpUser}/>
+            <Route exact path='/signup-user' render={props => <SignUpUser {...props}/>} />
+            
+         
+            { this.props.currentUser ?
+            <>
+              <Switch>
+                <Route exact path='/add-address' component={AddAddress}/>
+                <Route exact path='/home' component={ItemContainer}/>
+                <Route exact path='/profile' component={Profile}/>
+                <Route exact path='/edit-profile' component={EditProfile}/>
+                <Route exact path='/messages' component={MessageContainer}/>
+                <Route exact path='/share-item' component={ShareItem}/>
+                <Route exact path='/item-info' component={ItemInfo}/>
+                <Route exact path='/edit-item' component={EditItem}/>
+                
+              </Switch>
+            </> : 
+            <p>Loading...</p>
+            }
+
+          </Switch>
+        </Router>
+      </div>
+    );
+  }
+
+
+
+}
+  
+const mapStateToProps = state => {
+  return {
+    currentUser: state.currentUser
+  }
 }
 
-export default App;
+const mapsToDispatchProps = dispatch => {
+  return{
+    reAuth: () => dispatch(reAuth()),
+    fetchAllItems: ()=> dispatch(fetchAllItems()),
+    fetchAllUsers: ()=> dispatch(fetchAllUsers())
+  }
+}
+  
+export default connect(mapStateToProps, mapsToDispatchProps)(App);
