@@ -11,14 +11,17 @@ class Navbar extends Component {
 
     render() {
         return (
-            <div>
-                <Link to = '/share-item'>Share</Link>
-                <Link to = '/home'>Home</Link>
-                <Link to = '/profile'>Profile</Link>
-                <Link to = '/messages'>Messages</Link>
-                <Link to = '/' onClick={this.handleSignOut}>Sign Out</Link>
-
-            </div>
+            <nav className="nav-wrapper teal">
+                <div className="container">
+                    <ul id="nav-mobile" className="right">
+                        <li><Link to = '/share-item'><i className="material-icons">share</i>Share</Link></li>
+                        <li><Link to = '/home'><i className="material-icons">home</i>Home</Link></li>
+                        <li><Link to = '/profile'><i className="material-icons">account_circle</i>Profile</Link></li>
+                        <li><Link to = '/messages'><i className="material-icons">forum</i>Messages</Link></li>
+                        <li><Link to = '/' onClick={this.handleSignOut}>SIGN OUT</Link></li>
+                    </ul>
+                </div>
+            </nav>
         );
     }
 

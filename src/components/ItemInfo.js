@@ -13,16 +13,39 @@ const ItemInfo = (props) => {
 
     return (
         <div>
-            {<Navbar/>}
-            <img src={image} alt="Item image" height="400" width="400"/>
-            <h5>Title: {title}</h5>
-            <p>Description: {description}</p>
-            {available ? <p>Available</p> : <p>Not Available</p> }
+            <div className = 'row'>
+                {<Navbar/>}
+            </div>
 
-            <p>{first_name + ' ' +last_name }</p>
-            <p>Address: {address}</p>
-            
-            <button>Message {first_name}</button>
+            <div className = 'container row'>
+                <div className = 'col s12 m6 l6'>
+                    <img src={image} alt="Item image" height="500" width="500" />
+                </div>
+                <div className = 'user-card col s12 m6 l6'>
+                    <i className="material-icons large">account_circle</i>
+                    <h3 className="pink-text text-accent-3">{first_name + ' ' +last_name }</h3>
+                    <h6>{address}</h6><br/>
+                    <button className="waves-effect waves-light btn-large  pink accent-3">
+                        <i className="material-icons right">message</i>Message {first_name}</button>
+                </div>
+            </div>
+
+            <div className = 'container row'>
+                <div className = 'col s12 m6 l6'>
+                    <div className="container divider">
+                    </div>
+                    <div>
+                        <blockquote className="">
+                            <h4>{title}</h4>
+                            {available ? 
+                                <h6 className="blue-text"><i className="material-icons">check</i>Item is Available</h6> : 
+                                <h6 className="red-text"><i className="material-icons">close</i>Item is not Available</h6>
+                            }
+                            <p className = 'left-align'>Description: {description}</p>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

@@ -10,7 +10,7 @@ class EditItem extends Component {
         title: this.props.selectedItem.title,
         description: this.props.selectedItem.description,
         category: this.props.selectedItem.category,
-        image: ''
+        image: this.props.selectedItem.image
     }
 
     handleChange = (e) => {
@@ -32,25 +32,46 @@ class EditItem extends Component {
         const {id} = selectedItem
         return (
             <div>
-                {<Navbar/>}
-                <form onSubmit={(e) => editItem(e, this.state, id, history)}>
-                    <br/><img src={selectedItem.imageUrl} alt="Item image" height="150" width="150" />
-                    <input type="file" accept="image/*" onChange={this.handleUpload}/>
-                   
-                    <br/><label htmlFor="title">Title:</label>
-                    <br/><input name="title" value={title} onChange={this.handleChange}/>
-                    <br/><label htmlFor="description">Description</label>
-                    <br/><input name="description" value={description} onChange={this.handleChange}/>
+                <div className = 'row'>
+                    {<Navbar/>}
+                </div>
+                <div className= 'form-edit' >
+                    <form className = 'container' onSubmit={(e) => editItem(e, this.state, id, history)}>
+                        
+                        <img src={selectedItem.imageUrl} alt="Item image" height="200" width="200" />
+                        
+                        <div className="file-field input-field ">
+                            <div className="btn teal">
+                                <span><i className="material-icons right">image</i>Choose File</span>
+                                <input type="file" accept="image/*" onChange={this.handleUpload}/>
+                            </div>
+                            <div className="file-path-wrapper">
+                                <input className="file-path validate" type="text"/>
+                            </div>
+                        </div>
                     
-                    <br/><label>Category:</label>
-                    <br/><select name="category" value={category} onChange={this.handleChange}>
-                        <option value="food">food</option>
-                        <option value="non-food">non-food</option>
-                    </select>
+                        <label htmlFor="title">Title:</label>
+                        <input name="title" value={title} onChange={this.handleChange}/>
+                        <label htmlFor="description"><strong>Description</strong></label>
+                        <textarea className="materialize-textarea" name="description" value={description} onChange={this.handleChange}/>
 
-                    <br/><input type="submit" value="Update"></input>
-                </form>
-                <button onClick={(e) => deleteItem(e, selectedItem, history)}>Delete Item</button>
+
+                        <label>Category:</label>
+                        <select className="browser-default" name="category" value={category} onChange={this.handleChange}>
+                                <option value="" disabled selected>Choose a category</option>
+                                <option value="food">food</option>
+                                <option value="non-food">non-food</option>
+                        </select>
+
+                        <br/><button className="waves-effect waves btn  blue" type="submit">
+                            <i className="material-icons right">update</i>Update
+                        </button>
+                    </form>
+
+                    <br/><button className="waves-effect waves btn  pink accent-3" onClick={(e) => deleteItem(e, selectedItem, history)}>
+                            <i className="material-icons right">delete</i>Delete Item
+                    </button>
+                </div>
             </div>
         );
     }  

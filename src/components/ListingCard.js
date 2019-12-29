@@ -13,14 +13,30 @@ class ListingCard extends Component {
         const {item, history, selectedItem, deleteItem, editItemAvailablity} = this.props
 
         return(
-            <div> 
-                <img src={imageUrl} alt="Item image" height="150" width="150" />
-                <p>Title: {title}</p>
-                <p>Description: {description}</p>
-                <Link to='/edit-item' onClick={() => selectedItem(item)}><button>Edit Item</button></Link>
-                {available ? <button onClick = {(e)=> editItemAvailablity(e, item)}>Available</button> : <button onClick = {(e)=> editItemAvailablity(e, item)}> Not Available </button>}
-
-                <button onClick={(e)=> deleteItem(e, item, history)} >Delete</button>
+            <div className = 'col s12 m4 l3'> 
+                <div className ='card'>
+                    <div className="card-image">
+                        <img src={imageUrl} alt="Item image" height="270" />
+                    </div>
+                    <div className = "card-content-fixed">
+                        <h5 className = "teal-text text-darken-1">{title}</h5>
+                        <p className = 'truncate'>Description: {description}</p>
+                        <div className="card-action">
+                            <div className= 'row'>
+                                {available ? 
+                                    <button className ="waves-effect waves-light btn teal lighten-1" onClick = {(e)=> editItemAvailablity(e, item)}>Available</button> 
+                                    : <button className = "waves-effect waves-teal btn-flat" onClick = {(e)=> editItemAvailablity(e, item)}> Not Available </button>
+                                }
+                            </div>
+                            <div>
+                                <Link to='/edit-item' onClick={() => selectedItem(item)}><button className = 'btn-floating btn waves-effect waves-light blue'>
+                                    <i className="material-icons">edit</i>Edit Item</button></Link>
+                                <button className = 'btn-floating btn waves-effect waves-light red' onClick={(e)=> deleteItem(e, item, history)} >
+                                    <i className="material-icons">delete</i>Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         ) 
     }

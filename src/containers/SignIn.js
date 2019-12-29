@@ -20,14 +20,24 @@ class SignIn extends Component {
         const{email, password} = this.state
 
         return (
-            <div>
-                <h1>Sign in</h1>
+            <div className="container">
+                <h4>Sign in</h4>
                 <form onSubmit={(e) => this.props.signIn(e, this.state, this.props.history)}>
-                    <label htmlFor="email">Email</label>
-                    <br/><input type='email' name="email" value={email} onChange={this.handleChange}/>
-                    <br/><label htmlFor="email">Password</label>
-                    <br/><input type='password' name="password" value={password} onChange={this.handleChange}/>
-                    <br/><input type="submit" value="Sign In"></input>
+
+                    <div className="input-field col s12">
+                        <i className="material-icons prefix">mail</i>
+                        <label htmlFor='icon_prefix'>Email</label>
+                        <input className = 'validate' id = 'icon_prefix' type='email' name="email" value={email} onChange={this.handleChange}/>
+                    </div>
+
+                    <div className="input-field col s12">
+                        <i className="material-icons prefix">lock</i>
+                        <label htmlFor='icon_lock'>Password</label>
+                        <input className = 'validate' id='icon_lock' type='password' name="password" value={password} onChange={this.handleChange}/>
+                    </div>
+                    
+                    <button className="waves-effect waves btn-large" type="submit">
+                        <i className="material-icons right">exit_to_app</i>SIGN IN</button>
                 </form>
             </div>
         );

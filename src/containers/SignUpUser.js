@@ -21,24 +21,35 @@ export class SignUpUser extends Component {
 
     render() {
        const { firstName, lastName, birthday, email, password } = this.state
+       const {history} = this.props
         return (
-            <div>
+            <div className="row">
+                <form className ='form-user' onSubmit={(e) => this.props.signUpUser(e, this.state, history)}>
+                    <div className="input-field col s12">
+                        <label>First Name</label>
+                        <input className = 'validate' type="text" name="firstName" value={firstName} onChange={this.handleChange}/>
+                    </div>
+                    <div className="input-field col s12">
+                        <label>Last Name</label>
+                        <input className = 'validate' type="text" name="lastName" value={lastName} onChange={this.handleChange}/>
+                    </div>
+                    <div>
+                        <label>Birthday</label>
+                        <input className='datepicker' type='date' name="birthday" value={birthday} onChange={this.handleChange}/>
+                    </div>
+                    <div className="input-field col s12">
+                        <label>Email</label>
+                        <input className = 'validate' type='email' name="email" value={email} onChange={this.handleChange}/>
+                    </div>
+                    <div className="input-field col s12">
+                        <label>Password</label>
+                        <input className = 'validate' type='password' name="password" value={password} onChange={this.handleChange}/>
+                    </div>
 
-                <form onSubmit={(e) => this.props.signUpUser(e, this.state, this.props.history)}>
-                    <label htmlFor="firstName">First Name</label>
-                    <br/><input name="firstName" value={firstName} onChange={this.handleChange}/>
-                    <br/><label htmlFor="lastName">Last Name</label>
-                    <br/><input name="lastName" value={lastName} onChange={this.handleChange}/>
-                    <br/><label htmlFor="birthday">Birthday</label>
-                    <br/><input type='date' name="birthday" value={birthday} onChange={this.handleChange}/>
-                    <br/><label htmlFor="email">Email</label>
-                    <br/><input type='email' name="email" value={email} onChange={this.handleChange}/>
-                    <br/><label htmlFor="password">Password</label>
-                    <br/><input type='password' name="password" value={password} onChange={this.handleChange}/>
+                    <button className="waves-effect waves btn" type="submit">
+                        <i class="material-icons right">navigate_next</i>NEXT</button>
 
-                    <br/><input type="submit" value="Next"/>
                 </form>
-                
             </div>
         );
     }

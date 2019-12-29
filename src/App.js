@@ -34,11 +34,8 @@ class App extends React.Component {
         <Router>
           <Switch>
             <Route exact path='/' component ={Welcome}/>
+            <Route exact path='/signup-user' component={SignUpUser}/>
             
-            <Route exact path='/signup' component={SignUpUser}/>
-            <Route exact path='/signup-user' render={props => <SignUpUser {...props}/>} />
-            
-         
             { this.props.currentUser ?
             <>
               <Switch>

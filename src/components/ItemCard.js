@@ -39,12 +39,18 @@ class ItemCard extends Component {
         const formattedDistance = Math.round(distance*10)/10;
         return (
             <Link to='/item-info' onClick={this.handleClick} > 
-                <div>
-                    <h5>{item.title}</h5> 
-                    <img src={this.state.image} alt="Item image" height="150" width="150" />
-                    <p>{formattedDistance} mi far away</p>
+                <div className = 'col s12 m4 l3'>
+                    <div className ='card'>
+                        <div className="card-image">
+                            <img src={this.state.image} alt="Item image" height="270"  />
+                        </div>
+                        <div className = "card-content-fixed">
+                            <h5 className="teal-text text-darken-1">{item.title}</h5>
+                            <p className="black-text text-darken-1">{formattedDistance} mi far away</p>
+                        </div>
+                    </div>
                 </div>
-            </Link>
+            </Link> 
         )
     }
 }
