@@ -36,3 +36,85 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  margin: 0;
+  text-align: center;
+}
+
+.split {
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+}
+
+.left-side {
+  left: 0;
+  width: 75%;
+  background-image: url('./1.jpeg');
+  background-size:     cover;
+  background-repeat:   no-repeat;
+  background-position: center center;   
+}
+
+.right-side {
+  right: 0;
+  width: 25%;
+  background-color: white;
+  box-shadow: 0 0 30px 0 rgb(0, 0, 0);
+}
+
+.centered {
+  position: relative;
+  top: 43%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.form-user {
+  display: inline-block;
+  padding: 35px;
+  margin: 5% 25% 0%;
+  box-shadow: 0 6px 15px 0 rgba(37, 166, 154);
+  border-radius: 35px;
+  transition: 0.3s;
+}
+
+.form-edit {
+  padding: 35px;
+  margin: 2% 25% 0%;
+  box-shadow: 0 6px 15px 0 rgba(37, 166, 154);
+  border-radius: 35px;
+  transition: 0.3s;
+}
+
+.form-item {
+  display: inline-block;
+  padding: 35px;
+  margin: 5% 25% 0%;
+  box-shadow: 0 0px 15px 0 rgb(245, 0, 61);
+  border-radius: 35px;
+  transition: 0.3s;
+}
+
+.user-card {
+  box-shadow: 0 0px 15px 0 rgb(107, 115, 114);
+  border-radius: 30px;
+  transition: 0.3s;
+}
+
+img {
+  max-width: 100%;
+}
+
+.card-content-fixed {
+  padding: 6px;
+  border-radius: 0 0 2px 2px;
+}
+
+
+
+

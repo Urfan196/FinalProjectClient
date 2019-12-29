@@ -13,18 +13,6 @@ class EditProfile extends Component {
         birthday: this.props.currentUser.birth_day
     }
 
-    // componentDidUpdate() {
-    //     const {first_name, last_name, email, birth_day} = this.props.currentUser
-    //     if(Object.keys(this.props.currentUser).length > 0 && this.state.firstName == undefined){
-    //       this.setState({
-    //         firstName: first_name,
-    //         lastName: last_name,
-    //         email: email,
-    //         birthday: birth_day
-    //       })
-    //     }
-    // }
-
     handleChange = (e) => {
         const {name, value} = e.target
         this.setState({
@@ -37,24 +25,29 @@ class EditProfile extends Component {
         const {editProfile, deleteUser, history, currentUser} = this.props
         return (
             <div>
-                {<Navbar/>}
-                <form onSubmit={(e)=> editProfile(e, history, this.state, currentUser.id)}>
-                    <label htmlFor="firstName">First Name</label>
-                    <br/><input name="firstName" value={firstName} onChange={this.handleChange}/>
-                    <br/><label htmlFor="lastName">Last Name</label>
-                    <br/><input name="lastName" value={lastName} onChange={this.handleChange}/>
-                    <br/><label htmlFor="birthday">Birthday</label>
-                    <br/><input type='date' name="birthday" value={birthday} onChange={this.handleChange}/>
-                    <br/><label htmlFor="email">Email</label>
-                    <br/><input type='email' name="email" value={email} onChange={this.handleChange}/>
-
-                    <br/><input type="submit" value="Update"></input>
-                </form>
-                <button onClick={(e) => deleteUser(e, history, currentUser)} >Delete Your Account</button>
+                <div className = 'row'>
+                    {<Navbar/>}
+                </div>
+                <div className = 'form-edit'>
+                    <form className = 'container' onSubmit={(e)=> editProfile(e, history, this.state, currentUser.id)}>
+                        <label htmlFor="firstName">First Name</label>
+                        <input name="firstName" value={firstName} onChange={this.handleChange}/>
+                        <label htmlFor="lastName">Last Name</label>
+                        <input name="lastName" value={lastName} onChange={this.handleChange}/>
+                        <label htmlFor="birthday">Birthday</label>
+                        <input type='date' name="birthday" value={birthday} onChange={this.handleChange}/>
+                        <label htmlFor="email">Email</label>
+                        <input type='email' name="email" value={email} onChange={this.handleChange}/>
+                        <button className="waves-effect waves btn blue" type="submit">
+                            <i className="material-icons right">update</i>Update</button>
+                    </form>
+                    <br/><button className="waves-effect waves btn pink accent-3" type="submit" onClick={(e) => deleteUser(e, history, currentUser)}>
+                        <i className="material-icons left">delete</i>Delete Your Account
+                    </button>
+                </div>
             </div>
         );
     }
- 
 }
 
 const mapStateToProps = state => {

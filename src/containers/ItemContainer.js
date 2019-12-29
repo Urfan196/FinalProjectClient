@@ -5,8 +5,6 @@ import Filter from './Filter'
 import ItemCard from '../components/ItemCard'
 import fetchNearLocations from '../actions/fetchNearLocations'
 
-
-
 class ItemContainer extends Component {
 
     componentDidMount () {
@@ -15,27 +13,35 @@ class ItemContainer extends Component {
     
     render () {  
         const {filterCategory} = this.props
+        
         return (
             <div>
-                {<Navbar/>}
-                {<Filter/>}
-                {
-                    this.props.locations. map (obj => {
-                        const {location, distance, items} = obj
-                        const itemCard = items.map(item => {
-                            if(filterCategory === 'All') {
-                                return (item.available) && <ItemCard key={item.id} item={item} distance={distance} location={location}/>
-                            } else {
-                                return (item.available && item.category == filterCategory) && <ItemCard key={item.id} item={item} distance={distance} location={location}/>
-                            }
+                <div className = 'row'>
+                    {<Navbar/>}
+                </div>
+                <div className = 'container row'>
+                    {<Filter/>}
+                </div>
+                <div className="container row divider"></div>
+                <div className ='container row'>
+                    {
+                        this.props.locations.map (obj => {
+                            const {location, distance, items} = obj
+                            const itemCard = items.map(item => {
+                                if(filterCategory === 'All') {
+                                    return (item.available) && <ItemCard key={item.id} item={item} distance={distance} location={location}/>
+                                } else {
+                                    return (item.available && item.category == filterCategory) 
+                                    && <ItemCard key={item.id} item={item} distance={distance} location={location}/>
+                                }
+                            })
+                            return itemCard
                         })
-                        return itemCard
-                    })
-                }
+                    }
+                </div>
             </div>
         )
     }
-     
 }
 
 const mapStateToProps = state => {

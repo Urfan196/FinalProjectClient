@@ -9,7 +9,7 @@ class ShareItem extends Component {
         image: '',
         title: '',
         description: '',
-        category: 'food'
+        category: ''
     }
 
     handleChange = (e) => {
@@ -30,27 +30,39 @@ class ShareItem extends Component {
         const {shareItem, history, currentUser} = this.props
 
         return (
-            <div>
-                {<Navbar/>}
-                <h4>Share Item</h4>
-
-               <form onSubmit={(e) => shareItem(e, history, currentUser, this.state) }>
-                    <input type="file" accept="image/*" onChange={this.handleUpload}/><br/>
-                    
-                    <br/><label htmlFor="title">Title:</label>
-                    <br/><input name="title" value={title} onChange={this.handleChange}/>
-                    <br/><label htmlFor="description">Description:</label>
-                    <br/><input name="description" value={description} onChange={this.handleChange}/>
-
-                    <br/><label>Category:</label>
-                    <br/><select name="category" onChange={this.handleChange}>
-                        <option value="food">food</option>
-                        <option value="non-food">non-food</option>
-                    </select>
-
-                    <br/><input type="submit" value="Share Item"/>
-                </form>
-
+            <div >
+                <div className = 'row'>
+                    {<Navbar/>}
+                </div>
+                <h3>Share an item</h3>
+                <div className="container row">
+                    <form className= 'form-item' onSubmit={(e) => shareItem(e, history, currentUser, this.state) }>
+                        <div className="input-field col s12">
+                            <label>Title:</label>
+                            <input className = 'validate' type="text" name="title" value={title} onChange={this.handleChange}/>
+                        </div>
+                        <div className="input-field col s12">
+                            <label>Description:</label>
+                            <textarea className="materialize-textarea" type="text" name="description" value={description} onChange={this.handleChange}/>
+                        </div>
+                        <select className="browser-default" name="category" onChange={this.handleChange}>
+                            <option value="" disabled selected>Choose a category</option>
+                            <option value="food">food</option>
+                            <option value="non-food">other</option>
+                        </select>
+                        <div className="file-field input-field ">
+                            <div className="btn teal">
+                                <span><i className="material-icons right">image</i>Choose File</span>
+                                <input type="file" accept="image/*" onChange={this.handleUpload}/>
+                            </div>
+                            <div className="file-path-wrapper">
+                                <input className="file-path validate" type="text"/>
+                            </div>
+                        </div>
+                        <button className="waves-effect waves btn-large  pink accent-3" type="submit">
+                            <i className="material-icons right">share</i>Share</button>
+                    </form>
+                </div>
             </div>
         );
     }

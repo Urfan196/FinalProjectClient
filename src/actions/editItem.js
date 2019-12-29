@@ -6,7 +6,7 @@ const editItem = (e, state, id, history) => {
     formData.append('item[title]', title)
     formData.append('item[description]', description)
     formData.append('item[category]', category)
-    formData.append('item[image]', image)
+    image && formData.append('item[image]', image)
 
     return (dispatch) => {
         return fetch(`http://localhost:3000/items/${id}`, {
