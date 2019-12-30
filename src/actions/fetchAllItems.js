@@ -1,4 +1,3 @@
-
 const fetchAllItems = () => {
     return (dispatch) => {
         return fetch('http://localhost:3000/items', {

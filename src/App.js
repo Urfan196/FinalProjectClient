@@ -9,11 +9,11 @@ import ShareItem from './containers/ShareItem'
 import ItemInfo from './components/ItemInfo'
 import EditItem from './containers/EditItem'
 import MessageContainer from './containers/MessageContainer'
-import ConversationsList from './containers/ConversationsList'
 import Profile from './components/Profile'
 import EditProfile from './containers/EditProfile'
 import fetchAllItems from './actions/fetchAllItems'
 import fetchAllUsers from './actions/fetchAllUsers'
+import fetchAllConvos from './actions/fetchAllConvos'
 import reAuth from './actions/reAuth'
 import './App.css';
 
@@ -24,6 +24,7 @@ class App extends React.Component {
       this.props.reAuth()
       this.props.fetchAllItems()
       this.props.fetchAllUsers()
+      this.props.fetchAllConvos()
   }
 
 
@@ -45,9 +46,7 @@ class App extends React.Component {
                 <Route exact path='/share-item' component={ShareItem}/>
                 <Route exact path='/item-info' component={ItemInfo}/>
                 <Route exact path='/edit-item' component={EditItem}/>
-                {/* <Route exact path='/messages' component={MessageContainer}/>
-                <Route exact path='/messages' component={MessageContainer}/> */}
-                <Route exact path='/convo-list' component={ConversationsList}/>
+                <Route exact path='/messages' component={MessageContainer}/>
               </Switch>
             </> : 
             <p>Please Sign In</p>
@@ -73,7 +72,8 @@ const mapsToDispatchProps = dispatch => {
   return{
     reAuth: () => dispatch(reAuth()),
     fetchAllItems: ()=> dispatch(fetchAllItems()),
-    fetchAllUsers: ()=> dispatch(fetchAllUsers())
+    fetchAllUsers: ()=> dispatch(fetchAllUsers()),
+    fetchAllConvos: () => dispatch(fetchAllConvos())
   }
 }
   

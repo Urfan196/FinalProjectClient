@@ -1,49 +1,49 @@
-import React from 'react';
+// import React from 'react';
 
-class NewMessageForm extends React.Component {
-  state = {
-    content: '',
-    convo_id: this.props.convo_id
-  };
-
-//   componentWillReceiveProps = nextProps => {
-//     this.setState({ convo_id: nextProps.convo_id });
+// class NewMessageForm extends React.Component {
+//   state = {
+//     content: '',
+//     convo_id: this.props.convo_id
 //   };
 
-  handleChange = e => {
-    this.setState({ content: e.target.value });
-  };
+// //   componentWillReceiveProps = nextProps => {
+// //     this.setState({ convo_id: nextProps.convo_id });
+// //   };
 
-  handleSubmit = e => {
-    e.preventDefault();
+//   handleChange = e => {
+//     this.setState({ content: e.target.value });
+//   };
 
-    fetch('http://localhost:3000//messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify(this.state)
-    });
-    this.setState({ content: '' });
-  };
+//   handleSubmit = e => {
+//     e.preventDefault();
 
-  render = () => {
-    return (
-      <div className="newMessageForm">
-        <form onSubmit={this.handleSubmit}>
-          <label>New Message:</label>
-          <br />
-          <input
-            type="text"
-            value={this.state.content}
-            onChange={this.handleChange}
-          />
-          <input type="submit" />
-        </form>
-      </div>
-    );
-  };
-}
+//     fetch('http://localhost:3000//messages', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'Accept': 'application/json'
+//       },
+//       body: JSON.stringify(this.state)
+//     });
+//     this.setState({ content: '' });
+//   };
 
-export default NewMessageForm;
+//   render = () => {
+//     return (
+//       <div className="newMessageForm">
+//         <form onSubmit={this.handleSubmit}>
+//           <label>New Message:</label>
+//           <br />
+//           <input
+//             type="text"
+//             value={this.state.content}
+//             onChange={this.handleChange}
+//           />
+//           <input type="submit" />
+//         </form>
+//       </div>
+//     );
+//   };
+// }
+
+// export default NewMessageForm;
