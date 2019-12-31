@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 class NewMessageForm extends React.Component {
   state = {
     content: '',
-    convo_id: this.props.activeConvo.id
+    convo_id: this.props.activeConvoId
   };
 
   handleChange = e => {
@@ -46,7 +46,7 @@ class NewMessageForm extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        activeConvo: state.activeConvo
+        activeConvoId: state.activeConvoId
     }
 }
 

@@ -16,7 +16,7 @@ import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css';
 
 
-const API_WS_ROOT = 'ws://localhost:3000/cable'
+const API_WS_ROOT = 'ws://localhost:3334/cable'
 
 const persistConfig = {
   key: 'root',

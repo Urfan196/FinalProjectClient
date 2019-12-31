@@ -23,11 +23,11 @@ export class ConvoList extends Component {
     }
 }
 
-// const mapStateToProps = state => {
-//     return {
-//         convos: state.convos
-//     }
-// }
+const mapStateToProps = state => {
+    return {
+        convos: state.convos
+    }
+}
 
 const mapsToDispatchProps = dispatch => {
     return {
@@ -35,4 +35,4 @@ const mapsToDispatchProps = dispatch => {
     }
 }
 
-export default connect(null, mapsToDispatchProps)(ConvoList);
+export default connect(mapStateToProps, mapsToDispatchProps)(ConvoList);

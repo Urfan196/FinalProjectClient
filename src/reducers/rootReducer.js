@@ -6,7 +6,7 @@ const initialState = {
     selectedItem: {},
     filterCategory: 'All',
     convos: [],
-    activeConvo: {}
+    activeConvoId: null
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -66,19 +66,16 @@ const rootReducer = (state = initialState, action) => {
         case 'ADD_CONVO':
             return {...state, convos: [...state.convos, action.convo]}
         case 'SET_MESSAGE_OF_CONVO':
-            const convoNewMessage = state.convos.map(conversation =>{
+            const convoNewMessage = state.convos.map(conversation => {
                 if(conversation.id === action.convo.id){
                     return action.convo
                 } else {
                     return conversation
                 }
             })
-            return {...state, convos: convoNewMessage, activeConvo: action.convo}
+            return {...state, convos: convoNewMessage}
         case 'SET_ACTIVE_CONVO':
-            const activeConvo = state.convos.find(
-                conversation => conversation.id === action.convoId
-            );
-            return{...state, activeConvo}
+            return{...state, activeConvoId: action.convoId}
             
 
         default:

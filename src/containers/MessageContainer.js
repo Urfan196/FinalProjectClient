@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ActionCable } from 'react-actioncable-provider';
+import { ActionCableConsumer } from 'react-actioncable-provider'
 import NewConvoForm from '../components/NewConvoForm';
 import ConvoList from '../components/ConvoList';
 import MessageBox from '../components/MessageBox';
@@ -15,8 +15,7 @@ import { connect } from 'react-redux'
       };
     
     handleReceivedMessage = (response) => {
-        
-        const { message } = response;
+        const { message } = response
         const {convos} = this.props
         const conversation = convos.find(
             conversation => conversation.id === message.convo_id
@@ -26,33 +25,34 @@ import { connect } from 'react-redux'
     };
 
      render() {
-        const { convos, activeConvo } = this.props
+        const { convos, activeConvoId } = this.props
         
          return (
             <div>
-                <ActionCable
+                <ActionCableConsumer
                     channel={{ channel: 'ConvosChannel' }}
                     onReceived={this.handleReceivedConvo}
                 />
 
                 { convos.length && (
                     convos.map(conversation => {
+                        console.log(conversation)
                         return (
-                        <ActionCable
+                        <ActionCableConsumer
                             key={conversation.id}  
                             channel={{ channel: 'MessagesChannel', convo: conversation.id }}
                             onReceived={this.handleReceivedMessage}
                         />
                         );
                     })
-                )}
+                )} 
 
-                <ConvoList convos={convos}/>
+                <ConvoList />
 
                 <NewConvoForm />
 
-                { Object.keys(activeConvo).length !==0 && (
-                    <MessageBox activeConvo={activeConvo}/>
+                { activeConvoId && (
+                    <MessageBox />
                 )}
 
             
@@ -65,7 +65,7 @@ import { connect } from 'react-redux'
 const mapStateToProps = state => {
     return {
         convos: state.convos,
-        activeConvo: state.activeConvo
+        activeConvoId: state.activeConvoId
     }
 }
 

@@ -6,31 +6,34 @@ class MessageBox extends React.Component {
     
     orderedMessages = messages => {
         const sortedMessages = messages.sort(
-        (a, b) => new Date(a.created_at) - new Date(b.created_at)
+            (a, b) => new Date(a.created_at) - new Date(b.created_at)
         );
         return sortedMessages.map(message => {
-        return (<li key={message.id}>{message.content}</li>);
+            return (<li key={message.id}>{message.content}</li>);
         });
     };
     
     render() {
-        const { title, messages } = this.props.activeConvo
+        const { convos, activeConvoId } = this.props
+        const conversation = convos.find(
+            conversation => conversation.id === activeConvoId
+        )
+        // debugger
         return (
             <div>
-                <h2>{title}</h2>
-                <ul>{this.orderedMessages(messages)}</ul>
+                <h2>{conversation.title}</h2>
+                <ul>{this.orderedMessages(conversation.messages)}</ul>
                 <NewMessageForm />  
             </div>
         );
     }
 }
 
-// const mapStateToProps = state => {
-//     return {
-//         activeConvo: state.activeConvo
-//     }
-// }
+const mapStateToProps = state => {
+    return {
+        convos: state.convos,
+        activeConvoId: state.activeConvoId
+    }
+}
 
-export default MessageBox;
-
-// connect(mapStateToProps)(
+export default connect(mapStateToProps)(MessageBox);
