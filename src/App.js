@@ -9,7 +9,6 @@ import ShareItem from './containers/ShareItem'
 import ItemInfo from './components/ItemInfo'
 import EditItem from './containers/EditItem'
 import MessageContainer from './containers/MessageContainer'
-import ConversationsList from './containers/ConversationsList'
 import Profile from './components/Profile'
 import EditProfile from './containers/EditProfile'
 import fetchAllItems from './actions/fetchAllItems'
@@ -48,7 +47,6 @@ class App extends React.Component {
                 <Route exact path='/item-info' component={ItemInfo}/>
                 <Route exact path='/edit-item' component={EditItem}/>
                 <Route exact path='/messages' component={MessageContainer}/>
-                <Route exact path='/convo-list' component={ConversationsList}/>
               </Switch>
             </> : 
             <p>Please Sign In</p>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom' 
 import {connect} from 'react-redux'
 import deleteItem from '../actions/deleteItem'
 import editItemAvailablity from '../actions/editItemAvailablity'

@@ -3,7 +3,7 @@ const fetchAllConvos = () => {
         return fetch('http://localhost:3000/convos', {
             method: "GET",
             headers: {
-            //   "Authorization": `${localStorage.getItem('jwt')}`,
+              "Authorization": `${localStorage.getItem('jwt')}`,
               "Accept": "application/json"
             }
         })

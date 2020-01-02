@@ -13,17 +13,16 @@ class NewMessageForm extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-
     fetch('http://localhost:3000/messages', {
       method: 'POST',
       headers: {
-        // "Authorization": `${localStorage.getItem('jwt')}`,
+        "Authorization": `${localStorage.getItem('jwt')}`,
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
       body: JSON.stringify(this.state)
-    });
-    this.setState({ content: '' });
+    })
+    .then(()=> this.setState({ content: '' }))
   };
 
   render = () => {

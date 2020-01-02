@@ -1,45 +1,51 @@
-import React, { Component } from 'react';
+import React from 'react';
+import {connect} from 'react-redux'
 
-class NewConvoForm extends Component {
+const NewConvoForm = props =>{
 
-    state = {
-        title: ''
-      };
+    const {selectedItem, currentUser} = props
+    const {id, first_name, last_name} = selectedItem.location.user
+    const {title} = selectedItem.item
     
-    handleChange = e => {
-        this.setState({ title: e.target.value });
-    };
 
-    handleSubmit = e => {
-        e.preventDefault()
+    const startConvo = () => {
         fetch('http://localhost:3000/convos', {
             method: 'POST',
             headers: {
-            // "Authorization": `${localStorage.getItem('jwt')}`,
+            "Authorization": `${localStorage.getItem('jwt')}`,
             'Content-Type': 'application/json',
             'Accept': 'application/json'
             },
-            body: JSON.stringify(this.state)
-        });
-        this.setState({ title: '' }); 
-    };
+            body: JSON.stringify({
+                title,
+                receiver_id: id,
+                sender_id: currentUser.id
+            })
+        })
+        .then(() => props.activeConvoForm())
+    }
 
-    render = () => {
-        return (
+    return (
             <div className="newConversationForm">
-            <form onSubmit={this.handleSubmit}>
                 <label>New Conversation:</label>
-                <br />
-                <input
-                type="text"
-                value={this.state.title}
-                onChange={this.handleChange}
-                />
-                <input type="submit" />
-            </form>
+                <p>From: {first_name+ ' ' + last_name}</p>
+                <p>To: {currentUser.first_name+ ' ' + currentUser.last_name}</p>
+                <button onClick={startConvo}>Start a conversation</button>
             </div>
-        );
-    };
+    );
 }
 
-export default NewConvoForm;
+const mapStateToProps = state => {
+    return {
+        selectedItem: state.selectedItem,
+        currentUser: state.currentUser
+    }
+}
+
+const mapsToDispatchProps = dispatch => {
+    return{
+        activeConvoForm: () => dispatch({type: 'SET_CONVO_FORM'})
+    }
+}
+
+export default connect(mapStateToProps, mapsToDispatchProps)(NewConvoForm);

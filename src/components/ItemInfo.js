@@ -1,6 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import Navbar from '../containers/Navbar'
+import { Link } from 'react-router-dom';
+
 
 const ItemInfo = (props) => {
 
@@ -25,8 +27,8 @@ const ItemInfo = (props) => {
                     <i className="material-icons large">account_circle</i>
                     <h3 className="pink-text text-accent-3">{first_name + ' ' +last_name }</h3>
                     <h6>{address}</h6><br/>
-                    <button className="waves-effect waves-light btn-large  pink accent-3">
-                        <i className="material-icons right">message</i>Message {first_name}</button>
+                    <Link to = '/messages'><button className="waves-effect waves-light btn-large  pink accent-3" onClick={props.activeConvoForm}>
+                        <i className="material-icons right">message</i>Message {first_name}</button></Link>
                 </div>
             </div>
 
@@ -52,8 +54,15 @@ const ItemInfo = (props) => {
 
 const mapStateToProps = state => {
     return {
-        selectedItem: state.selectedItem
+        selectedItem: state.selectedItem,
+        currentUser: state.currentUser
     }
 }
 
-export default connect(mapStateToProps)(ItemInfo)
+const mapsToDispatchProps = dispatch => {
+    return{
+        activeConvoForm: () => dispatch({type: 'SET_CONVO_FORM'})
+    }
+}
+
+export default connect(mapStateToProps, mapsToDispatchProps)(ItemInfo)

@@ -17,10 +17,9 @@ class MessageBox extends React.Component {
         const { convos, activeConvoId } = this.props
         const conversation = convos.find(
             conversation => conversation.id === activeConvoId
-        )
-        // debugger
+        ) 
         return (
-            <div>
+            <div className = 'col s12 m9 l9'>
                 <h2>{conversation.title}</h2>
                 <ul>{this.orderedMessages(conversation.messages)}</ul>
                 <NewMessageForm />  

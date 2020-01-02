@@ -4,17 +4,17 @@ import { connect } from 'react-redux'
 export class ConvoList extends Component {
 
     render() {
-        const {convos, handleClick} = this.props
+        const {convos, currentUser, handleClick} = this.props
         return (
-            <div>
+            <div className = 'col s12 m3 l3'>
                 <h2>Conversations:</h2>
                 <ul>{
                     convos.map(conversation => {
-                        return (
-                          <li key={conversation.id} onClick={() => handleClick(conversation.id)}>
-                            {conversation.title}
-                          </li>
-                        )
+                        if (conversation.sender_id === currentUser.id || conversation.receiver_id === currentUser.id){ 
+                            return (<li key={conversation.id} onClick={() => handleClick(conversation.id)}>
+                                    {conversation.title}
+                                </li>)
+                        }
                     })
                 }</ul>
 
@@ -25,7 +25,8 @@ export class ConvoList extends Component {
 
 const mapStateToProps = state => {
     return {
-        convos: state.convos
+        convos: state.convos,
+        currentUser: state.currentUser
     }
 }
 

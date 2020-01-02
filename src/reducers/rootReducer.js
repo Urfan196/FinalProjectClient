@@ -6,7 +6,8 @@ const initialState = {
     selectedItem: {},
     filterCategory: 'All',
     convos: [],
-    activeConvoId: null
+    activeConvoId: null,
+    activeConvoForm: false
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -76,6 +77,8 @@ const rootReducer = (state = initialState, action) => {
             return {...state, convos: convoNewMessage}
         case 'SET_ACTIVE_CONVO':
             return{...state, activeConvoId: action.convoId}
+        case 'SET_CONVO_FORM':
+            return {...state, activeConvoForm: !state.activeConvoForm}
             
 
         default:
