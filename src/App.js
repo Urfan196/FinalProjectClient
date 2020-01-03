@@ -36,7 +36,7 @@ class App extends React.Component {
             <Route exact path='/' component ={Welcome}/>
             <Route exact path='/signup-user' component={SignUpUser}/>
             
-            { this.props.currentUser ?
+            { Object.keys(this.props.currentUser).length > 0 ?
             <>
               <Switch>
                 <Route exact path='/add-address' component={AddAddress}/>
@@ -49,7 +49,7 @@ class App extends React.Component {
                 <Route exact path='/messages' component={MessageContainer}/>
               </Switch>
             </> : 
-            <p>Please Sign In</p>
+            <h6>Please Sign In</h6>
             }
 
           </Switch>
@@ -57,8 +57,6 @@ class App extends React.Component {
       </div>
     );
   }
-
-
 
 }
   

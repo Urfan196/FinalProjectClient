@@ -9,7 +9,7 @@ class MessageBox extends React.Component {
             (a, b) => new Date(a.created_at) - new Date(b.created_at)
         );
         return sortedMessages.map(message => {
-            return (<li key={message.id}>{message.content}</li>);
+        return (<li key={message.id} id='each-message'>{message.content}</li>);
         });
     };
     
@@ -19,10 +19,14 @@ class MessageBox extends React.Component {
             conversation => conversation.id === activeConvoId
         ) 
         return (
-            <div className = 'col s12 m9 l9'>
-                <h2>{conversation.title}</h2>
-                <ul>{this.orderedMessages(conversation.messages)}</ul>
-                <NewMessageForm />  
+            <div className = 'col s12 m8 l8 message-box'>
+                <div>
+                    <h2>{conversation.title}</h2>
+                </div>
+                <ul>
+                    {this.orderedMessages(conversation.messages)}
+                </ul>
+                <NewMessageForm />
             </div>
         );
     }

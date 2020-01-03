@@ -48,9 +48,12 @@ import { connect } from 'react-redux'
                 <div className = 'row'>
                     {<Navbar/>}
                 </div>
+                <div className = 'row'>
                 { activeConvoForm && (
                     <NewConvoForm/>
                 )}
+                </div>
+
                 <div className = 'container row'>
                     <ConvoList /> 
                     { activeConvoId && (

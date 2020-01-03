@@ -27,16 +27,18 @@ class NewMessageForm extends React.Component {
 
   render = () => {
     return (
-      <div className="newMessageForm">
+      <div id = 'chat-form'>
         <form onSubmit={this.handleSubmit}>
-          <label>New Message:</label>
+          <label id='new-message-label'>New Message:</label>
           <br />
           <input
             type="text"
             value={this.state.content}
             onChange={this.handleChange}
           />
-          <input type="submit" />
+          <button className ="waves-effect waves-light btn teal lighten-1" id='send-message' type="submit" >
+            <i className="material-icons right">send</i>Send
+          </button>
         </form>
       </div>
     );

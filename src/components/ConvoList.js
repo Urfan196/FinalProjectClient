@@ -6,8 +6,8 @@ export class ConvoList extends Component {
     render() {
         const {convos, currentUser, handleClick} = this.props
         return (
-            <div className = 'col s12 m3 l3'>
-                <h2>Conversations:</h2>
+            <div className = 'col s12 m3 l3 convo-list'>
+                <h6 className = 'pink-text text-accent-3'><strong>Conversations:</strong></h6>
                 <ul>{
                     convos.map(conversation => {
                         if (conversation.sender_id === currentUser.id || conversation.receiver_id === currentUser.id){ 
@@ -17,7 +17,6 @@ export class ConvoList extends Component {
                         }
                     })
                 }</ul>
-
             </div>
         );
     }

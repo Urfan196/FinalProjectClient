@@ -6,7 +6,6 @@ const NewConvoForm = props =>{
     const {selectedItem, currentUser} = props
     const {id, first_name, last_name} = selectedItem.location.user
     const {title} = selectedItem.item
-    
 
     const startConvo = () => {
         fetch('http://localhost:3000/convos', {
@@ -26,11 +25,11 @@ const NewConvoForm = props =>{
     }
 
     return (
-            <div className="newConversationForm">
+            <div>
                 <label>New Conversation:</label>
                 <p>From: {first_name+ ' ' + last_name}</p>
                 <p>To: {currentUser.first_name+ ' ' + currentUser.last_name}</p>
-                <button onClick={startConvo}>Start a conversation</button>
+                <button onClick={startConvo} className = 'waves-effect waves-light btn teal lighten-1'>Start a conversation</button>
             </div>
     );
 }
