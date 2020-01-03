@@ -1,6 +1,6 @@
-const fetchAllItems = () => {
+const fetchAllConvos = () => {
     return (dispatch) => {
-        return fetch('http://localhost:3000/items', {
+        return fetch('http://localhost:3000/convos', {
             method: "GET",
             headers: {
               "Authorization": `${localStorage.getItem('jwt')}`,
@@ -8,10 +8,10 @@ const fetchAllItems = () => {
             }
         })
         .then(res => res.json())
-        .then(items => {
-            dispatch({ type: "SET_ALL_ITEMS", items: items})
+        .then(convos => {
+            dispatch({ type: "SET_ALL_CONVOS", convos})
         })
     }
 }
 
-export default fetchAllItems
+export default fetchAllConvos

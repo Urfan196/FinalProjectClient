@@ -13,10 +13,9 @@ import Profile from './components/Profile'
 import EditProfile from './containers/EditProfile'
 import fetchAllItems from './actions/fetchAllItems'
 import fetchAllUsers from './actions/fetchAllUsers'
+import fetchAllConvos from './actions/fetchAllConvos'
 import reAuth from './actions/reAuth'
-
 import './App.css';
-
 
 
 class App extends React.Component {
@@ -25,6 +24,7 @@ class App extends React.Component {
       this.props.reAuth()
       this.props.fetchAllItems()
       this.props.fetchAllUsers()
+      this.props.fetchAllConvos()
   }
 
 
@@ -36,21 +36,20 @@ class App extends React.Component {
             <Route exact path='/' component ={Welcome}/>
             <Route exact path='/signup-user' component={SignUpUser}/>
             
-            { this.props.currentUser ?
+            { Object.keys(this.props.currentUser).length > 0 ?
             <>
               <Switch>
                 <Route exact path='/add-address' component={AddAddress}/>
                 <Route exact path='/home' component={ItemContainer}/>
                 <Route exact path='/profile' component={Profile}/>
                 <Route exact path='/edit-profile' component={EditProfile}/>
-                <Route exact path='/messages' component={MessageContainer}/>
                 <Route exact path='/share-item' component={ShareItem}/>
                 <Route exact path='/item-info' component={ItemInfo}/>
                 <Route exact path='/edit-item' component={EditItem}/>
-                
+                <Route exact path='/messages' component={MessageContainer}/>
               </Switch>
             </> : 
-            <p>Loading...</p>
+            <h6>Please Sign In</h6>
             }
 
           </Switch>
@@ -58,8 +57,6 @@ class App extends React.Component {
       </div>
     );
   }
-
-
 
 }
   
@@ -73,7 +70,8 @@ const mapsToDispatchProps = dispatch => {
   return{
     reAuth: () => dispatch(reAuth()),
     fetchAllItems: ()=> dispatch(fetchAllItems()),
-    fetchAllUsers: ()=> dispatch(fetchAllUsers())
+    fetchAllUsers: ()=> dispatch(fetchAllUsers()),
+    fetchAllConvos: () => dispatch(fetchAllConvos())
   }
 }
   

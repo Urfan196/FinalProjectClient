@@ -4,7 +4,10 @@ const initialState = {
     items: [],
     locations:[],
     selectedItem: {},
-    filterCategory: 'All'
+    filterCategory: 'All',
+    convos: [],
+    activeConvoId: null,
+    activeConvoForm: false
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -58,6 +61,25 @@ const rootReducer = (state = initialState, action) => {
 
         case 'SET_FILTER_CATEGORY':
             return {...state, filterCategory: action.category}
+
+        case 'SET_ALL_CONVOS': 
+            return {...state, convos: action.convos }
+        case 'ADD_CONVO':
+            return {...state, convos: [...state.convos, action.convo]}
+        case 'SET_MESSAGE_OF_CONVO':
+            const convoNewMessage = state.convos.map(conversation => {
+                if(conversation.id === action.convo.id){
+                    return action.convo
+                } else {
+                    return conversation
+                }
+            })
+            return {...state, convos: convoNewMessage}
+        case 'SET_ACTIVE_CONVO':
+            return{...state, activeConvoId: action.convoId}
+        case 'SET_CONVO_FORM':
+            return {...state, activeConvoForm: !state.activeConvoForm}
+            
 
         default:
             return state
