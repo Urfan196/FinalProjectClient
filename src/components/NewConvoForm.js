@@ -27,8 +27,8 @@ const NewConvoForm = props =>{
     return (
             <div>
                 <label>New Conversation:</label>
-                <p>From: {first_name+ ' ' + last_name}</p>
-                <p>To: {currentUser.first_name+ ' ' + currentUser.last_name}</p>
+                <p>To: {first_name+ ' ' + last_name}</p>
+                <p>From: {currentUser.first_name+ ' ' + currentUser.last_name}</p>
                 <button onClick={startConvo} className = 'waves-effect waves-light btn teal lighten-1'>Start a conversation</button>
             </div>
     );
